@@ -136,18 +136,31 @@ SMTP_PORT=587
 SMTP_USER=vamshipdas@gmail.com
 SMTP_PASSWORD=<GMAIL_APP_PASSWORD>
 ALERT_EMAIL_FROM=vamshipdas@gmail.com
-ALERT_EMAIL_TO=dasvamshi8@gmail.com
+ALERT_EMAIL_TO=vamshipdas@gmail.com
 ALERT_EMAIL_ENABLED=true
-ALERT_MIN_SEVERITY=critical
+ALERT_MIN_SEVERITY=high
 ALERT_COOLDOWN_SECONDS=300
 DASHBOARD_BASE_URL=http://localhost:5173
 ```
+
+### How to Complete Setup & Test Email Delivery
+
+1. Open the dashboard in your browser: `http://localhost:5173`.
+2. Click **Alerts & SMTP** (or **Notification Settings** on the bottom left).
+3. In the modal:
+   - **Analyst Recipient Addresses:** `vamshipdas@gmail.com`
+   - **Sender Gmail Account Address:** `vamshipdas@gmail.com`
+   - **Gmail App Password:** Enter your 16-character Google App Password (obtained from [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)).
+   - **Minimum Alert Severity:** `High and Critical (Active)`
+4. Click **Save Notification Settings** — it will save with a green *"Notification settings saved successfully!"* toast.
+5. Click **Send Test Email** — the diagnostic critical alert email will be delivered to `vamshipdas@gmail.com`.
+6. Any incoming High or Critical security ticket in the right-hand panel is automatically dispatched to email, and can also be resent using the **Resend** button or simulated using the **⚡ Simulate Threat** button.
 
 > **Setting up Gmail SMTP App Password:**
 > 1. In your Google Account (`vamshipdas@gmail.com`), enable **2-Step Verification**.
 > 2. Go to **Security > App passwords** (or search "App passwords").
 > 3. Generate a password for "Mail" / "Windows Computer" (16 characters).
-> 4. Paste it into `backend/.env` under `SMTP_PASSWORD=...`.
+> 4. Paste it into `backend/.env` under `SMTP_PASSWORD=...` or save it directly via the **Alerts & SMTP** modal.
 > 5. If `SMTP_PASSWORD` is omitted, email sending is safely disabled with a log warning and the app runs normally.
 
 
